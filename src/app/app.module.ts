@@ -12,6 +12,8 @@ import { EditProductComponent } from './components/edit-product/edit-product.com
 import { ListProductComponent } from './components/list-product/list-product.component';
 import { AddProductComponent } from './components/add-product/add-product.component';
 
+import { FormsModule } from '@angular/forms';
+
 //Import angular fire modules
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
@@ -34,7 +36,8 @@ import { environment } from 'src/environments/environment.prod';
     BrowserModule,
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebase),
-    AngularFirestoreModule
+    AngularFirestoreModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

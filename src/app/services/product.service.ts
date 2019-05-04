@@ -15,4 +15,8 @@ export class ProductService {
   getAll() {
     return this.productsCollection.valueChanges();
   }
+
+  save(product) {
+    return this.productsCollection.add(product);
+  }
 }

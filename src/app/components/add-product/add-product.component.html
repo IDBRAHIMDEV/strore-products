@@ -4,8 +4,8 @@
     <h1>Add new Product</h1>
   </div>
   <div class="col-md-6 text-right">
-    <a href="" class="btn btn-link">
-      <i class="fa fa-arrow-left"></i>
+    <a routerLink="/products" class="btn btn-link">
+      <i class="fa fa-arrow-left"></i> Back to list
     </a>
   </div>
 </div>
@@ -14,26 +14,27 @@
   <div class="col-md-8 mx-auto">
     <div class="form-group">
       <label for="Title">Title</label>
-      <input id="Title" placeholder="New Title" type="text" class="form-control">
+      <input [(ngModel)]="myProduct.title" id="Title" placeholder="New Title" type="text" class="form-control">
     </div>
 
     <div class="form-group">
       <label for="Price">Price</label>
-      <input id="Price" placeholder="new Price" type="text" class="form-control">
+      <input [(ngModel)]="myProduct.price" id="Price" placeholder="new Price" type="text" class="form-control">
     </div>
 
     <div class="form-group">
       <label for="Stock">Stock</label>
-      <input id="Stock" placeholder="New Stock" type="text" class="form-control">
+      <input [(ngModel)]="myProduct.stock" id="Stock" placeholder="New Stock" type="text" class="form-control">
     </div>
 
     <div class="form-check my-4">
       <label for="Active" class="form-check-label">
-        <input type="checkbox" class="form-check-input" name="" id="Active" value="checkedValue" checked>
+        <input [(ngModel)]="myProduct.active" type="checkbox" class="form-check-input" name="" id="Active" value="checkedValue" checked>
         Active
       </label>
     </div>
-    <button class="btn btn-block btn-success">
+
+    <button class="btn btn-block btn-success" (click)="saveProduct()">
       <i class="fa fa-send"></i> Add Product
     </button>
   </div>
