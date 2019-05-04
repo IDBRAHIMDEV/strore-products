@@ -1,6 +1,7 @@
+import { Product } from './../models/product';
 import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
-
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -13,10 +14,20 @@ export class ProductService {
    }
 
   getAll() {
-    return this.productsCollection.valueChanges();
+    return this.productsCollection.snapshotChanges().pipe(
+      map(actions => actions.map(a => {
+        const data = a.payload.doc.data() as Product;
+        const id = a.payload.doc.id;
+        return { id, ...data };
+      }))
+    );
   }
 
   save(product) {
     return this.productsCollection.add(product);
+  }
+
+  destroy(id) {
+    return this.productsCollection.doc(id).delete();
   }
 }

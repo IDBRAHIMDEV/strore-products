@@ -1,5 +1,6 @@
 import { ProductService } from './../../services/product.service';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-product',
@@ -15,15 +16,17 @@ export class AddProductComponent implements OnInit {
     active: false
   }
 
-  constructor(private productService: ProductService) { }
+  constructor(
+     private productService: ProductService, 
+     private router: Router) { }
 
   ngOnInit() {
   }
 
   saveProduct() {
     this.productService.save(this.myProduct)
-                       .then(res => console.log(res))
-                       .catch(err => console.log(err))
+                       .then(res => this.router.navigate(['/products']))
+                       .catch(err => console.log('message erreur: ', err))
   }
 
 }
