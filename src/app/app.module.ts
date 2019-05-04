@@ -12,6 +12,12 @@ import { EditProductComponent } from './components/edit-product/edit-product.com
 import { ListProductComponent } from './components/list-product/list-product.component';
 import { AddProductComponent } from './components/add-product/add-product.component';
 
+//Import angular fire modules
+import { AngularFireModule } from '@angular/fire';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { environment } from 'src/environments/environment.prod';
+
+.33
 @NgModule({
   declarations: [
     AppComponent,
@@ -26,7 +32,9 @@ import { AddProductComponent } from './components/add-product/add-product.compon
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFirestoreModule
   ],
   providers: [],
   bootstrap: [AppComponent]
