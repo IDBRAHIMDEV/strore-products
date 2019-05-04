@@ -27,13 +27,18 @@
         <td>{{ product.price }}</td>
         <td>{{ product.stock }}</td>
         <td class="text-right" nowrap>
-          <a routerLink="" class="btn mr-2 btn-warning">
+          
+          <button [disabled]="!product.stock" (click)="takeProduct(product)" class="btn btn-danger mr-2">
+            <i class="fa fa-shopping-cart"></i>
+          </button>
+          
+          <a [routerLink]="['/products/edit', product.id]" class="btn mr-2 btn-warning">
             <i class="fa fa-pencil"></i>
           </a>
           
-          <a routerLink="" class="btn btn-dark">
+          <button (click)="deleteProduct(product.id)" class="btn btn-dark">
             <i class="fa fa-times"></i>
-          </a>
+          </button>
         </td>
       </tr>
     </tbody>

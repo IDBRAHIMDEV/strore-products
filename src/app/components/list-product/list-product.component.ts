@@ -24,4 +24,19 @@ export class ListProductComponent implements OnInit {
                        })
   }
 
+  deleteProduct(id) {
+    this.productService.destroy(id)
+                       .then(res => console.log(res))
+                       .catch(err => console.log(err))
+  }
+
+  takeProduct(product) {
+    if(product.stock > 0) {
+        this.productService.shopping(product)
+                       .then(res => console.log(res))
+                       .catch(err => console.log(err))
+    }
+  
+  }
+
 }

@@ -30,4 +30,18 @@ export class ProductService {
   destroy(id) {
     return this.productsCollection.doc(id).delete();
   }
+
+  shopping(product) {
+    return this.productsCollection
+               .doc(product.id)
+               .update({ stock: product.stock - 1 })
+  }
+
+  getOne(id) {
+    return this.productsCollection.doc(id).valueChanges();
+  }
+
+  update(id, product) {
+    return this.productsCollection.doc(id).update(product);
+  }
 }
