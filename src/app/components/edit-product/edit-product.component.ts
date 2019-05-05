@@ -10,12 +10,15 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class EditProductComponent implements OnInit {
 
-  myProduct: Product = {
+  myProduct = {
     title: '',
     price: 0,
     stock: 0,
-    active: false
+    active: false,
+    category: {}
   }
+
+  categories = [{id: 1, label: "Electronic"}, {id: 2, label: "cars"}];
 
   id: string = "";
   constructor(
@@ -31,7 +34,7 @@ export class EditProductComponent implements OnInit {
 
   getOneProduct() {
     this.productService.getOne(this.id)
-                       .subscribe((res: Product) => this.myProduct = res)
+                       .subscribe((res: any) => this.myProduct = res)
   }
 
   updateProduct() {

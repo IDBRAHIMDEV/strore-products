@@ -23,9 +23,12 @@
     </thead>
     <tbody>
       <tr *ngFor="let product of products">
-        <td scope="row">{{ product.title }}</td>
-        <td>{{ product.price }}</td>
-        <td>{{ product.stock }}</td>
+        <td scope="row">
+          <h4>{{ product.title | titlecase }}</h4>
+          <em>{{ product?.category?.label }}</em>
+        </td>
+        <td>{{ product.price | currency }}</td>
+        <td>{{ product.stock | number }}</td>
         <td class="text-right" nowrap>
           
           <button [disabled]="!product.stock" (click)="takeProduct(product)" class="btn btn-danger mr-2">

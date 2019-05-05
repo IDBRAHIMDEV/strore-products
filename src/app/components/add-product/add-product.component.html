@@ -17,24 +17,45 @@
 
     <div class="form-group">
       <label for="Title">Title</label>
-      <input autocomplete="off" pattern="[a-zA-Z0-9 ]*" maxlength="10" minlength="4" required #myTitle="ngModel" [(ngModel)]="myProduct.title" id="Title" name="title" placeholder="New Title" type="text" class="form-control">
-      <div class="alert alert-danger" *ngIf="myTitle.invalid && myTitle.touched">
+      <input 
+        autocomplete="off" 
+        pattern="[a-zA-Z0-9 ]*" 
+        maxlength="10" 
+        minlength="4" 
+        required 
+        #myTitle="ngModel" 
+        [(ngModel)]="myProduct.title" 
+        id="Title" 
+        name="title" 
+        placeholder="New Title" 
+        type="text" 
+        class="form-control">
+
+      <div 
+        class="alert alert-danger" 
+        *ngIf="myTitle.invalid && myTitle.touched">
+
          <div *ngIf="myTitle.errors.required">
            This field is required !!
          </div>
+
          <div *ngIf="myTitle.errors.minlength">
            This field should be great than 4 chars !!
          </div>
+
          <div *ngIf="myTitle.errors.pattern">
             This field is not respect our pattern !!
           </div>
+
       </div>
 
     </div>
 
     <div class="form-group">
       <label for="Price">Price</label>
+
       <input #myPrice="ngModel"  autocomplete="off" required [(ngModel)]="myProduct.price" id="Price" (change)="log(myPrice)" placeholder="new Price" min="2" type="number" class="form-control" name="price">
+
       <div class="alert alert-danger" *ngIf="myPrice.invalid && myPrice.touched">
           <div *ngIf="myPrice.errors.required">
             This field is required !!
@@ -48,12 +69,25 @@
       <input [(ngModel)]="myProduct.stock" id="Stock" placeholder="New Stock" type="text" class="form-control" name="stock">
     </div>
 
-    <div class="form-check my-4">
-      <label for="Active" class="form-check-label">
-        <input [(ngModel)]="myProduct.active" type="checkbox" class="form-check-input" name="active" id="Active" value="checkedValue" checked >
-        Active
-      </label>
+   
+    <div class="form-group">
+      <label for="category">Choose on Category</label>
+      <select [(ngModel)]="myProduct.category" class="form-control" name="category" id="category">
+          <option [ngValue]="category" *ngFor="let category of categories">
+            {{ category.label }}
+          </option>
+        </select>
     </div>
+
+    
+
+    <div class="form-check my-4">
+        <label for="Active" class="form-check-label">
+          <input [(ngModel)]="myProduct.active" type="checkbox" class="form-check-input" name="active" id="Active" value="checkedValue" checked >
+          Active
+        </label>
+      </div>
+  
 
     <button [disabled]="f.invalid" class="btn btn-block btn-success" (click)="saveProduct(f)">
       <i class="fa fa-send"></i> Add Product

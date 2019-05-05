@@ -13,8 +13,11 @@ export class AddProductComponent implements OnInit {
     title: '',
     price: 0,
     stock: 0,
-    active: false
+    active: false,
+    category: {}
   }
+
+  categories = [{id: 1, label: "Electronic"}, {id: 2, label: "cars"}];
 
   constructor(
      private productService: ProductService, 
