@@ -23,10 +23,18 @@ export class AddProductComponent implements OnInit {
   ngOnInit() {
   }
 
-  saveProduct() {
-    this.productService.save(this.myProduct)
-                       .then(res => this.router.navigate(['/products']))
-                       .catch(err => console.log('message erreur: ', err))
+  saveProduct(form) {
+
+    if(form.valid) {
+      this.productService.save(this.myProduct)
+      .then(res => this.router.navigate(['/products']))
+      .catch(err => console.log('message erreur: ', err))
+    }
+   
+  }
+
+  log(data) {
+    console.log(data)
   }
 
 }
