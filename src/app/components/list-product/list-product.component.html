@@ -3,6 +3,9 @@
     <h1>List of Products</h1>
   </div>
   <div class="col-md-6 text-right">
+     
+    <span class="badge badge-success mr-5" style="font-size: 24px">{{ total | currency }}</span>
+
      <a routerLink="/products/add" class="btn btn-success">
        <i class="fa fa-plus"></i>
      </a> 
@@ -11,6 +14,8 @@
 
 <div class="row">
   <div class="col-md-12">
+    
+
     
 <table class="table">
     <thead>

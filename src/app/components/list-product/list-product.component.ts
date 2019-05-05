@@ -8,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListProductComponent implements OnInit {
 
+  total = 0;
   products: any[] = [];
 
   constructor(private productService: ProductService) { }
@@ -20,7 +21,7 @@ export class ListProductComponent implements OnInit {
     this.productService.getAll()
                        .subscribe((res: any[]) => {
                          this.products = res;
-                         console.log(res)
+                         this.chiffreAffaire()
                        })
   }
 
@@ -37,6 +38,13 @@ export class ListProductComponent implements OnInit {
                        .catch(err => console.log(err))
     }
   
+  }
+
+
+  chiffreAffaire() {
+    this.total = this.products.reduce((total, product) => {
+      return total + (product.price * product.stock)
+    }, 0);
   }
 
 }
