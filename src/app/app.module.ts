@@ -17,9 +17,13 @@ import { FormsModule } from '@angular/forms';
 //Import angular fire modules
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { AngularFireAuthModule } from '@angular/fire/auth';
+
+import { FlashMessagesModule } from 'angular2-flash-messages';
+
 import { environment } from 'src/environments/environment.prod';
 
-.33
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -37,7 +41,9 @@ import { environment } from 'src/environments/environment.prod';
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
-    FormsModule
+    FormsModule,
+    AngularFireAuthModule,
+    FlashMessagesModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

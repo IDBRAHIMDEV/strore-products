@@ -4,7 +4,12 @@
   </div>
   <div class="col-md-6 text-right">
      
-    <span class="badge badge-success mr-5" style="font-size: 24px">{{ total | currency }}</span>
+    <span class="badge mr-5" 
+     [ngClass]="{
+      'badge-success': total > 0,
+      ' badge-warning': total == 0
+     }" 
+    style="font-size: 24px">{{ total | currency }}</span>
 
      <a routerLink="/products/add" class="btn btn-success">
        <i class="fa fa-plus"></i>
@@ -16,7 +21,7 @@
   <div class="col-md-12">
     
 
-    
+<input (keyup.enter)="searchProduct()" [(ngModel)]="search" type="text" placeholder="Search ..." class="form-control">
 <table class="table">
     <thead>
       <tr>
@@ -27,7 +32,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let product of products">
+      <tr *ngFor="let product of resultSearch">
         <td scope="row">
           <h4>{{ product.title | titlecase }}</h4>
           <em>{{ product?.category?.label }}</em>

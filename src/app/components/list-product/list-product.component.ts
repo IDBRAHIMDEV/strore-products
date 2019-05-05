@@ -8,7 +8,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListProductComponent implements OnInit {
 
+  search = "";
   total = 0;
+  resultSearch: any[] = [];
   products: any[] = [];
 
   constructor(private productService: ProductService) { }
@@ -20,7 +22,7 @@ export class ListProductComponent implements OnInit {
   getAllProducts() {
     this.productService.getAll()
                        .subscribe((res: any[]) => {
-                         this.products = res;
+                         this.resultSearch = this.products = res;
                          this.chiffreAffaire()
                        })
   }
@@ -42,9 +44,19 @@ export class ListProductComponent implements OnInit {
 
 
   chiffreAffaire() {
-    this.total = this.products.reduce((total, product) => {
+    this.total = this.resultSearch.reduce((total, product) => {
       return total + (product.price * product.stock)
     }, 0);
+  }
+
+
+  searchProduct() {
+    this.resultSearch = this.products.filter(product => {
+      return product.title.toLowerCase().includes(this.search.toLowerCase()) 
+      || product.stock == this.search
+    })
+    this.chiffreAffaire();
+    console.log(this.resultSearch);
   }
 
 }
